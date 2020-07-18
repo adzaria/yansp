@@ -1,2 +1,2 @@
 # yansp
-Yet another node starterpack - optimized for fast dev and secured
+Yet Another Node.js Starter-Pack - optimized for fast development and secured 🔥🛡
