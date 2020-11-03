@@ -1,0 +1,13 @@
+# ENV
+.env
+
+# MODULES
+node_modules
+
+# BUILD
+build
+
+# IDEs
+.idea
+.code-workspace
+.sublime-project
