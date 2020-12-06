@@ -1,11 +1,7 @@
 import {mongoose} from "@typegoose/typegoose";
 
-export {testCloseDb};
-
-async function testCloseDb() {
-
+export default async() => {
+  console.log('---- Fin des tests');
   await mongoose.connection.db.dropDatabase();
   await mongoose.connection.close();
-
-  console.log('Tests ended, database connection closed');
 }

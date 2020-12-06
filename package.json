@@ -1,51 +1,54 @@
 {
-  "name": "yansp",
+  "name": "starterpack-nodejs",
   "version": "1.0.0",
-  "description": "Yet Another Node.js Starter-Pack - optimized for fast development and secured 🔥🛡",
-  "main": "index.js",
+  "description": "An express server ready to go",
+  "main": "build/api/api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node build/api/api.js",
+    "start:local": "ts-node api/api.ts",
+    "test": "npm run build && mocha --file build/test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adzaria/yansp.git"
+    "url": "git+https://github.com/myshortlist-co/starterpack-nodejs.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/adzaria/yansp/issues"
+    "url": "https://github.com/myshortlist-co/starterpack-nodejs/issues"
   },
-  "homepage": "https://github.com/adzaria/yansp#readme",
   "dependencies": {
-    "@typegoose/typegoose": "^7.4.1",
-    "body-parser": "^1.19.0",
-    "connect-mongodb-session": "^2.4.1",
+    "@typegoose/typegoose": "^7.4.0",
+    "compression": "^1.7.4",
+    "connect-mongodb-session": "^2.3.3",
     "cors": "^2.8.5",
-    "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "helmet": "^4.2.0",
+    "helmet": "^3.23.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.11",
-    "morgan": "^1.10.0"
+    "mongoose": "^5.9.27",
+    "morgan": "^1.10.0",
+    "request": "^2.88.2"
   },
   "devDependencies": {
-    "@types/body-parser": "^1.19.0",
-    "@types/chai": "^4.2.14",
-    "@types/connect-mongodb-session": "0.0.4",
-    "@types/cors": "^2.8.8",
-    "@types/express": "^4.17.8",
-    "@types/express-session": "^1.17.0",
-    "@types/helmet": "^4.0.0",
+    "@types/chai": "^4.2.12",
+    "@types/compression": "^1.7.0",
+    "@types/connect-mongodb-session": "0.0.2",
+    "@types/cors": "^2.8.7",
+    "@types/express": "^4.17.7",
+    "@types/express-session": "^1.17.3",
+    "@types/helmet": "0.0.45",
     "@types/jsonwebtoken": "^8.5.0",
-    "@types/mocha": "^8.0.3",
-    "@types/mongoose": "^5.7.37",
-    "@types/morgan": "^1.9.2",
-    "@types/node": "^14.14.6",
+    "@types/mocha": "^7.0.2",
+    "@types/mongoose": "^5.7.34",
+    "@types/morgan": "^1.9.1",
+    "@types/node": "^14.0.27",
     "chai": "^4.2.0",
-    "mocha": "^8.2.1",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.5"
-  }
+    "mocha": "^7.2.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "homepage": "https://github.com/myshortlist-co/starterpack-nodejs#readme"
 }

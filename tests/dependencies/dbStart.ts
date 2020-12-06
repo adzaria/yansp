@@ -6,24 +6,17 @@ if(process.env.NODE_ENV !== 'production') {
   }
 }
 
-export {testStartDb};
-
-async function testStartDb() {
+export default async() => {
   try {
-
     await mongoose.connect(process.env.DATABASE_TESTS_URL!, {
       useFindAndModify: false,
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true
     });
-
     await mongoose.connection.db.dropDatabase();
-
-    console.log('Database connected\n');
-
+    console.log('Début des tests (BDD connectée)\n');
   } catch (error) {
-
-    throw new Error('Error connecting to database');
+    throw new Error('Pas de bdd, lance sudo service mongod start');
   }
 }
