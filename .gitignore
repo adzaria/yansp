@@ -11,3 +11,8 @@ build
 .idea
 .code-workspace
 .sublime-project
+
+# CERTIFICATES
+*.pem
+**/*.pem
+**/**/*.pem

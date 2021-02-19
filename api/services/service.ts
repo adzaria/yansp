@@ -3,7 +3,10 @@ export default async(args: {}): Promise<any> => {
 
 
 
-    return 0;
+    return {
+      status: "ok",
+      data: {}
+    };
 
   } catch(error) {
 

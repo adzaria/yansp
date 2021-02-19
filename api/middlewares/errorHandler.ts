@@ -1,4 +1,5 @@
 import {NextFunction, Request, Response} from "express";
+import log from "../helpers/log";
 
 
 export {errorHandler};
@@ -7,7 +8,7 @@ const errorHandler = (error: any, req: Request, res: Response, next: NextFunctio
   if(res.headersSent) {
     return next(error);
   } else {
-    console.log(error);
+    log(error);
     return res.status(500).json({status: "error"});
   }
 };

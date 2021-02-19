@@ -6,4 +6,4 @@ export {router};
 
 const router = express.Router();
 
-router.get('/:fromUrl(val1|val2)', hasUserRights("param"), controller);
+router.get('/:fromUrl(val1|val2)', hasUserRights("parameter"), controller);

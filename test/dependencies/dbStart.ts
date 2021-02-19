@@ -1,4 +1,5 @@
 import {mongoose} from "@typegoose/typegoose";
+import log from "../../api/helpers/log";
 
 if(process.env.NODE_ENV !== 'production') {
   if(!require('dotenv').config()) {
@@ -8,6 +9,9 @@ if(process.env.NODE_ENV !== 'production') {
 
 export default async() => {
   try {
+    // @ts-ignore
+    this.enableTimeouts(false);
+    
     await mongoose.connect(process.env.DATABASE_TESTS_URL!, {
       useFindAndModify: false,
       useNewUrlParser: true,
@@ -15,7 +19,7 @@ export default async() => {
       useUnifiedTopology: true
     });
     await mongoose.connection.db.dropDatabase();
-    console.log('Début des tests (BDD connectée)\n');
+    log('Début des test (BDD connectée)\n');
   } catch (error) {
     throw new Error('Pas de bdd, lance sudo service mongod start');
   }

@@ -8,7 +8,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
   try {
 
     /**
-     * Get vars from a session
+     * Get vars from the session
      */
     const sessionId: unknown = req.session?.id;
 
@@ -32,9 +32,9 @@ export default async (req: Request, res: Response, next: NextFunction) => {
      */
     const fromHeaders: unknown = req.headers.fromHeaders;
 
-    await service({});
+    const {status, data} = await service({});
 
-    return res.status(200).json({});
+    return res.status(200).json({status, data});
 
   } catch (error) {
 

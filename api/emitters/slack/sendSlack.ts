@@ -1,3 +1,5 @@
+import log from "../../helpers/log";
+
 const request = require('request');
 
 export default async(text: string, url: string) => {
@@ -11,9 +13,9 @@ export default async(text: string, url: string) => {
         },
       }, (error: any, res: any, body: any) => {});
     } else {
-      console.log(`SLACK ${text}`);
+      log(`SLACK ${text}`);
     }
   } catch(error) {
-    console.log(error.message);
+    log(error.message);
   }
 }

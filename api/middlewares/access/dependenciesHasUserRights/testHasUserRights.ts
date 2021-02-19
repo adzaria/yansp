@@ -1,4 +1,4 @@
-export default async(userId: unknown, parameter: unknown): Promise<boolean> => {
+export default async(args: {data: unknown, parameter: unknown}): Promise<boolean> => {
   try {
 
     return true;

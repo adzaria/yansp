@@ -1,7 +1,8 @@
 import {mongoose} from "@typegoose/typegoose";
 
 export default async() => {
-  console.log('---- Fin des tests');
+  // @ts-ignore
+  this.enableTimeouts(false);
+  
   await mongoose.connection.db.dropDatabase();
-  await mongoose.connection.close();
 }

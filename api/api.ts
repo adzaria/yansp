@@ -1,6 +1,6 @@
 import express from "express";
 import helmet from "helmet";
-import logger from "morgan";
+import morgan from "morgan";
 import cors from "cors";
 import {config} from "./config/config";
 import database from "./helpers/database";
@@ -22,13 +22,20 @@ import {router} from "./router/router";
   const app: express.Application = express();
 
   app.enable('trust proxy');
-
+  
+  app.disable('etag');
+  
   app.use(cors(config.cors));
+  
   app.use(helmet(config.helmet));
-  app.use(logger(config.logger));
+  
+  app.use(morgan(config.logger /*{stream: winston.stream}*/));
+  
   app.use(session(config.expressSession));
+  
   app.use(express.urlencoded(config.bodyParser.urlEncoded));
   app.use(express.json(config.bodyParser.json));
+  
   app.use(compression({}));
 
   app.use(router);

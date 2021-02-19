@@ -1,5 +1,6 @@
 import events from "events";
 import sendSlack from "./slack/sendSlack";
+import log from "../helpers/log";
 
 const slackEmitter = new events.EventEmitter();
 
@@ -9,7 +10,7 @@ slackEmitter.on("event", async(data: {message: string,}) => {
 
   } catch(error) {
 
-    console.log(error.message);
+    log(error.message);
   }
 });
 

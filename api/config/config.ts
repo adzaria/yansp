@@ -1,3 +1,5 @@
+import fs from "fs";
+
 export {config};
 
 if (process.env.NODE_ENV !== 'production') {
@@ -47,7 +49,7 @@ const config: any = {
   expressSession: {
     secret: process.env.SESSION_SECRET,
     resave: true,
-    proxy: false,
+    proxy: process.env.MODE === "production",
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 58,
       path: '/',
@@ -57,11 +59,22 @@ const config: any = {
     },
     saveUninitialized: true,
     store: (() => {
-      const mongoDBStore = require('connect-mongodb-session')(require('express-session'),);
-      return new mongoDBStore({
+      const mongoDBStore = require('connect-mongodb-session')(require('express-session'));
+      const mongoDBStoreOptions: any = {
         uri: process.env.DATABASE_SESSIONS_URL,
-        collection: process.env.SESSION_COLLECTION,
-      })
+        collection: 'sessions',
+        connectionOptions: {
+          useUnifiedTopology: true,
+          useNewUrlParser: true,
+        },
+      };
+      // Use this if you use a pem file to connect the database
+      // if (process.env.MODE === 'production') {
+      //   mongoDBStoreOptions['connectionOptions']['sslCA'] = [
+      //     fs.readFileSync(`${__dirname}/../certificates/rds-combined-ca-bundle.pem`),
+      //   ];
+      // }
+      return new mongoDBStore(mongoDBStoreOptions);
     })(),
     name: process.env.SESSION_NAME,
   },
@@ -70,14 +83,14 @@ const config: any = {
   //          DATABASE              //
   ////////////////////////////////////
   database: {
-    url: process.env.DATABASE_URL!,
+    url: process.env.DATABASE_URL,
   },
 
   ////////////////////////////////////
   //          SLACK                 //
   ////////////////////////////////////
   slacker: {
-    slackBotV2: process.env.SLACK_API_URL!,
+    slackBotV2: process.env.SLACK_API_URL,
   },
 
   ////////////////////////////////////

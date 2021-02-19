@@ -3,10 +3,8 @@ import testHasUserRights from "./dependenciesHasUserRights/testHasUserRights";
 
 export default (parameter: string) => async(req: Request, res: Response, next: NextFunction) => {
   try {
-
-    const sessionId: unknown = req.session?.id;
-
-    const allowAccess = await testHasUserRights(sessionId, parameter);
+    
+    const allowAccess = await testHasUserRights({data: "data", parameter});
 
     if(!allowAccess) return next('Access denied');
 
